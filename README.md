@@ -8,7 +8,7 @@ Designed with a premium UI and smooth user experience to simulate a real-world p
 ## 🚀 Live Demo
 
 🔗 Add your deployed link here
-Example: https://yashwantchatti005.github.io/to-dolist/
+Example: https://yashwantchatti005.github.io/To-Do-List/
 
 ---
 
