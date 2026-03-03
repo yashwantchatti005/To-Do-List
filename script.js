@@ -1,22 +1,24 @@
 function addTask() {
   const taskInput = document.getElementById("taskInput");
   const taskText = taskInput.value.trim();
-
+  
   if (taskText === "") {
-    alert("Please enter a task!");
+    // Subtle shake animation could go here
+    taskInput.placeholder = "Please enter something!";
     return;
   }
 
   const taskList = document.getElementById("taskList");
   const li = document.createElement("li");
-
+  
   li.innerHTML = `
     <span onclick="toggleTask(this)">${taskText}</span>
-    <button onclick="deleteTask(this)">✖</button>
+    <button class="delete-btn" onclick="deleteTask(this)">✕</button>
   `;
 
   taskList.appendChild(li);
   taskInput.value = "";
+  taskInput.placeholder = "What's next?";
 }
 
 function toggleTask(element) {
@@ -24,12 +26,17 @@ function toggleTask(element) {
 }
 
 function deleteTask(element) {
-  element.parentElement.remove();
+  const item = element.parentElement;
+  // Apply the 'fall' animation class
+  item.classList.add("fall");
+  
+  // Wait for animation to finish before removing
+  item.addEventListener("transitionend", () => {
+    item.remove();
+  });
 }
 
-// Add task on Enter key press
-document.getElementById("taskInput").addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    addTask();
-  }
+// Enter key support
+document.getElementById("taskInput").addEventListener("keypress", (e) => {
+  if (e.key === "Enter") addTask();
 });
